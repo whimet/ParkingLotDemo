@@ -13,7 +13,7 @@ public class ParkingLotTest {
     @Test
     public void should_show_available_lots() {
         ParkingLot lot = new ParkingLot(10);
-        assertEquals(10, lot.availableLots());
+        assertEquals(10, lot.available());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class ParkingLotTest {
     public void should_reduce_available_lots_after_parked_car() {
         ParkingLot lot = new ParkingLot(10);
         lot.park(new Car());
-        assertEquals(9, lot.availableLots());
+        assertEquals(9, lot.available());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ParkingLotTest {
         Ticket ticket = lot.park(car);
 
         lot.retrieve(ticket);
-        assertEquals(10, lot.availableLots());
+        assertEquals(10, lot.available());
     }
 
     @Test

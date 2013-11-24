@@ -12,12 +12,12 @@ public class ParkingLot {
         ticketCarMap = new HashMap<Ticket, Car>();
     }
 
-    public int availableLots() {
+    public int available() {
         return capacity - ticketCarMap.size();
     }
 
     public Ticket park(Car car) {
-        if (availableLots() == 0) {
+        if (available() == 0) {
             return null;
         }
         
