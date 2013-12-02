@@ -6,50 +6,50 @@ import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertSame;
 import static org.junit.Assert.assertEquals;
 
-public class ParkerTest {
+public class ParkingBoyTest {
 
     @Test
     public void should_manage_multiple_lots() {
-        Parker parker = new Parker(new ParkingLot(1), new ParkingLot(2));
-        int number = parker.available();
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1), new ParkingLot(2));
+        int number = parkingBoy.available();
         assertEquals(3, number);
     }
 
     @Test
     public void should_reduce_available_spaces_after_parked_car() {
-        Parker parker = new Parker(new ParkingLot(1), new ParkingLot(2));
-        parker.park(new Car());
-        assertEquals(2, parker.available());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1), new ParkingLot(2));
+        parkingBoy.park(new Car());
+        assertEquals(2, parkingBoy.available());
     }
 
     @Test
     public void should_not_park_car_when_lots_are_full() {
         ParkingLot lot1 = a_full_parking_lot(1);
         ParkingLot lot2 = a_full_parking_lot(2);
-        Parker parker = new Parker(lot1, lot2);
+        ParkingBoy parkingBoy = new ParkingBoy(lot1, lot2);
 
-        Ticket ticket = parker.park(new Car());
+        Ticket ticket = parkingBoy.park(new Car());
         assertNull(ticket);
     }
 
     @Test
     public void should_retrieve_parked_car() {
-        Parker parker = new Parker(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         Car car = new Car();
-        Ticket ticket = parker.park(car);
+        Ticket ticket = parkingBoy.park(car);
 
-        Car retrieved = parker.retrieve(ticket);
+        Car retrieved = parkingBoy.retrieve(ticket);
         assertSame(car, retrieved);
     }
 
     @Test
     public void should_return_null_when_retrieve_car_with_invalid_ticket() {
-        Parker parker = new Parker(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
         Car car = new Car();
-        Ticket ticket = parker.park(car);
+        Ticket ticket = parkingBoy.park(car);
 
-        parker.retrieve(ticket);
-        Car retrieved = parker.retrieve(ticket);
+        parkingBoy.retrieve(ticket);
+        Car retrieved = parkingBoy.retrieve(ticket);
 
         assertNull(retrieved);
     }

@@ -3,7 +3,7 @@ package demo;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot {
+public class ParkingLot{
     private int capacity;
     private Map<Ticket,Car> ticketCarMap;
 

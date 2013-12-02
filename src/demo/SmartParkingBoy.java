@@ -1,9 +1,9 @@
 package demo;
 
-public class Parker {
+public class SmartParkingBoy {
     private ParkingLot[] parkingLots;
 
-    public Parker(ParkingLot... parkingLots) {
+    public SmartParkingBoy(ParkingLot... parkingLots) {
         this.parkingLots = parkingLots;
     }
 
@@ -16,13 +16,13 @@ public class Parker {
     }
 
     public Ticket park(Car car) {
-        for (ParkingLot lot : parkingLots) {
-            Ticket ticket = lot.park(car);
-            if (ticket != null) {
-                return ticket;
+        int index = 0;
+        for (int i = 0; i < parkingLots.length -1; i++) {
+            if(parkingLots[i].available() < parkingLots[i+1].available()){
+                index = i+1;
             }
         }
-        return null;
+        return parkingLots[index].park(car);
     }
 
     public Car retrieve(Ticket ticket) {
